@@ -10,21 +10,17 @@ const IndiaStats = props => {
   let recoveredCases = 0
   let deceasedCases = 0
   let confirmedCases = 0
-  let covidArr =  []
   statesList.forEach(eachState => {
-    if (covidData[eachState.state_code]) {
-      const {total} = covidData[eachState.state_code]
+    if (covidData[eachState.stateCode]) {
+      const {total} = covidData[eachState.stateCode]
       confirmedCases += total.confirmed ? total.confirmed : 0
-      covidArr.push(confirmedCases)
       recoveredCases += total.recovered ? total.recovered : 0
-      covidArr.push(recoveredCases)
       deceasedCases += total.deceased ? total.deceased : 0
-      covidArr.push(deceasedCases)
     }
   })
  //console.log(covidData);
   activeCases += confirmedCases - (recoveredCases + deceasedCases)
- console.log(covidArr)
+ //console.log(covidArr)
   return (
     <div className="stats-container">
       <div className="confirmed card" testid="countryWideConfirmedCases">
@@ -33,7 +29,7 @@ const IndiaStats = props => {
           src="https://res.cloudinary.com/dvmp5vgbm/image/upload/v1654438432/Covid19%20Dashboard/check-mark_1_odg0vn.png"
           alt="country wide confirmed cases pic"
         />
-        <p className="confirmed-cases cases">{covidArr[0]}</p>
+        <p className="confirmed-cases cases">{confirmedCases}</p>
       </div>
       <div className="active card">
         <p className="stats-type active-cases" testid="countryWideActiveCases">
