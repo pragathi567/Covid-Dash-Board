@@ -1,197 +1,439 @@
-import React, { Component } from 'react'
+import {Component} from 'react'
+import {Link} from 'react-router-dom'
+import {BsSearch} from 'react-icons/bs'
+import {FcGenericSortingAsc, FcGenericSortingDesc} from 'react-icons/fc'
+import {BiChevronRightSquare} from 'react-icons/bi'
 import Header from '../Header/Header'
+import TotalStateDetails from '../TotalStateDetails/TotalStateDetails'
+import Footer from '../Footer/Footer'
+import { Loading } from '../Loading/Loading'
 import './Home.css'
-import SearchBar from '../SearchBar/SearchBar'
-import IndiaStats from '../IndiaStats/IndiaStats'
+
 const statesList = [
   {
-    stateCode: 'AN',
-    stateName: 'Andaman and Nicobar Islands',
+    state_code: 'AN',
+    state_name: 'Andaman and Nicobar Islands',
   },
   {
-    stateCode: 'AP',
-    stateName: 'Andhra Pradesh',
+    state_code: 'AP',
+    state_name: 'Andhra Pradesh',
   },
   {
-    stateCode: 'AR',
-    stateName: 'Arunachal Pradesh',
+    state_code: 'AR',
+    state_name: 'Arunachal Pradesh',
   },
   {
-    stateCode: 'AS',
-    stateName: 'Assam',
+    state_code: 'AS',
+    state_name: 'Assam',
   },
   {
-    stateCode: 'BR',
-    stateName: 'Bihar',
+    state_code: 'BR',
+    state_name: 'Bihar',
   },
   {
-    stateCode: 'CH',
-    stateName: 'Chandigarh',
+    state_code: 'CH',
+    state_name: 'Chandigarh',
   },
   {
-    stateCode: 'CT',
-    stateName: 'Chhattisgarh',
+    state_code: 'CT',
+    state_name: 'Chhattisgarh',
   },
   {
-    stateCode: 'DN',
-    stateName: 'Dadra and Nagar Haveli and Daman and Diu',
+    state_code: 'DN',
+    state_name: 'Dadra and Nagar Haveli and Daman and Diu',
   },
   {
-    stateCode: 'DL',
-    stateName: 'Delhi',
+    state_code: 'DL',
+    state_name: 'Delhi',
   },
   {
-    stateCode: 'GA',
-    stateName: 'Goa',
+    state_code: 'GA',
+    state_name: 'Goa',
   },
   {
-    stateCode: 'GJ',
-    stateName: 'Gujarat',
+    state_code: 'GJ',
+    state_name: 'Gujarat',
   },
   {
-    stateCode: 'HR',
-    stateName: 'Haryana',
+    state_code: 'HR',
+    state_name: 'Haryana',
   },
   {
-    stateCode: 'HP',
-    stateName: 'Himachal Pradesh',
+    state_code: 'HP',
+    state_name: 'Himachal Pradesh',
   },
   {
-    stateCode: 'JK',
-    stateName: 'Jammu and Kashmir',
+    state_code: 'JK',
+    state_name: 'Jammu and Kashmir',
   },
   {
-    stateCode: 'JH',
-    stateName: 'Jharkhand',
+    state_code: 'JH',
+    state_name: 'Jharkhand',
   },
   {
-    stateCode: 'KA',
-    stateName: 'Karnataka',
+    state_code: 'KA',
+    state_name: 'Karnataka',
   },
   {
-    stateCode: 'KL',
-    stateName: 'Kerala',
+    state_code: 'KL',
+    state_name: 'Kerala',
   },
   {
-    stateCode: 'LA',
-    stateName: 'Ladakh',
+    state_code: 'LA',
+    state_name: 'Ladakh',
   },
   {
-    stateCode: 'LD',
-    stateName: 'Lakshadweep',
+    state_code: 'LD',
+    state_name: 'Lakshadweep',
   },
   {
-    stateCode: 'MH',
-    stateName: 'Maharashtra',
+    state_code: 'MH',
+    state_name: 'Maharashtra',
   },
   {
-    stateCode: 'MP',
-    stateName: 'Madhya Pradesh',
+    state_code: 'MP',
+    state_name: 'Madhya Pradesh',
   },
   {
-    stateCode: 'MN',
-    stateName: 'Manipur',
+    state_code: 'MN',
+    state_name: 'Manipur',
   },
   {
-    stateCode: 'ML',
-    stateName: 'Meghalaya',
+    state_code: 'ML',
+    state_name: 'Meghalaya',
   },
   {
-    stateCode: 'MZ',
-    stateName: 'Mizoram',
+    state_code: 'MZ',
+    state_name: 'Mizoram',
   },
   {
-    stateCode: 'NL',
-    stateName: 'Nagaland',
+    state_code: 'NL',
+    state_name: 'Nagaland',
   },
   {
-    stateCode: 'OR',
-    stateName: 'Odisha',
+    state_code: 'OR',
+    state_name: 'Odisha',
   },
   {
-    stateCode: 'PY',
-    stateName: 'Puducherry',
+    state_code: 'PY',
+    state_name: 'Puducherry',
   },
   {
-    stateCode: 'PB',
-    stateName: 'Punjab',
+    state_code: 'PB',
+    state_name: 'Punjab',
   },
   {
-    stateCode: 'RJ',
-    stateName: 'Rajasthan',
+    state_code: 'RJ',
+    state_name: 'Rajasthan',
   },
   {
-    stateCode: 'SK',
-    stateName: 'Sikkim',
+    state_code: 'SK',
+    state_name: 'Sikkim',
   },
   {
-    stateCode: 'TN',
-    stateName: 'Tamil Nadu',
+    state_code: 'TN',
+    state_name: 'Tamil Nadu',
   },
   {
-    stateCode: 'TG',
-    stateName: 'Telangana',
+    state_code: 'TG',
+    state_name: 'Telangana',
   },
   {
-    stateCode: 'TR',
-    stateName: 'Tripura',
+    state_code: 'TR',
+    state_name: 'Tripura',
   },
   {
-    stateCode: 'UP',
-    stateName: 'Uttar Pradesh',
+    state_code: 'UP',
+    state_name: 'Uttar Pradesh',
   },
   {
-    stateCode: 'UT',
-    stateName: 'Uttarakhand',
+    state_code: 'UT',
+    state_name: 'Uttarakhand',
   },
   {
-    stateCode: 'WB',
-    stateName: 'West Bengal',
+    state_code: 'WB',
+    state_name: 'West Bengal',
   },
 ]
 class Home extends Component {
-  state={
-    covidData : [],
-    isLoading : true,
-    searchInput : ''
+  state = {
+    isLoading: true,
+    totalActiveCases: 0,
+    totalConfirmedCases: 0,
+    totalRecoveredCases: 0,
+    totalDeceasedCases: 0,
+    statesInfo: [],
+    search: '',
+    filteredSearchList: [],
   }
-  componentDidMount(){
-    this.getCovidData()
+
+  componentDidMount() {
+    this.getTotalData()
   }
-  getCovidData = async() =>{
-    const url = 'https://apis.ccbp.in/covid19-state-wise-data';
+
+  getTotalData = async () => {
+    const apiUrl = 'https://apis.ccbp.in/covid19-state-wise-data'
     const options = {
-      method : 'GET'
+      method: 'GET',
     }
-    const response = await fetch(url,options)
-    const data = await response.json()
-    //console.log(data)
-    this.setState({covidData:data,isLoading:false})
-  }
-  onChangeSearchInput = event =>{
-    this.setState({searchInput: event.target.value})
-  }
-  renderHome = () => {
-    const {searchInput,covidData} = this.state
-    if(searchInput === ''){
-      return (
-        <>
-        <SearchBar value={searchInput} onChangeSearchInput={this.onChangeSearchInput}/>
-        <IndiaStats covidData={covidData} statesList={statesList}/>
-        </>
-      )
+
+    const response = await fetch(apiUrl, options)
+    if (response.ok) {
+      const data = await response.json()
+      let nationalWideConfirmedCases = 0
+      let nationalWideRecoveredCases = 0
+      let nationalWideDeceasedCases = 0
+      let nationalWideActiveCases = 0
+
+      statesList.forEach(state => {
+        if (data[state.state_code]) {
+          const {total} = data[state.state_code]
+          nationalWideConfirmedCases += total.confirmed ? total.confirmed : 0
+          nationalWideRecoveredCases += total.recovered ? total.recovered : 0
+          nationalWideDeceasedCases += total.deceased ? total.deceased : 0
+        }
+      })
+      nationalWideActiveCases +=
+        nationalWideConfirmedCases -
+        (nationalWideRecoveredCases + nationalWideDeceasedCases)
+
+      const states = statesList.map(each => ({
+        stateName: each.state_name,
+        stateCode: each.state_code,
+        confirmed: Object.keys(data)
+          .filter(state => state === each.state_code)
+          .map(e => data[e].total.confirmed),
+        recovered: Object.keys(data)
+          .filter(state => state === each.state_code)
+          .map(e => data[e].total.recovered),
+        deceased: Object.keys(data)
+          .filter(state => state === each.state_code)
+          .map(e => data[e].total.deceased),
+        active: Object.keys(data)
+          .filter(state => state === each.state_code)
+          .map(e => data[e].total.active),
+        other: Object.keys(data)
+          .filter(state => state === each.state_code)
+          .map(e => data[e].total.other),
+        population: Object.keys(data)
+          .filter(state => state === each.state_code)
+          .map(e => data[e].meta.population),
+      }))
+
+      this.setState({
+        totalActiveCases: nationalWideActiveCases,
+        totalRecoveredCases: nationalWideRecoveredCases,
+        totalDeceasedCases: nationalWideDeceasedCases,
+        totalConfirmedCases: nationalWideConfirmedCases,
+        isLoading: false,
+        statesInfo: states,
+      })
     }
+  }
+
+  getSearchResult = event => {
+    const searchItem = event.target.value
+    const searchResult = statesList.filter(data =>
+      data.state_name.toLowerCase().includes(searchItem.toLowerCase()),
+    )
+
+    return this.setState({
+      search: event.target.value,
+      filteredSearchList: searchResult,
+    })
+  }
+
+  showSearchList = () => {
+    const {filteredSearchList} = this.state
+    console.log(filteredSearchList)
+    return (
+      <ul className="filter-ui">
+        {filteredSearchList.map(each => (
+          <li className="filtered-search-li">
+            <p className="each-state-name">{each.state_name}</p>
+            <Link className="link-home" to={`/state/${each.state_code}`}>
+              <button type="button" className="search-btn">
+                <p>{each.state_code}</p>
+                <BiChevronRightSquare />
+              </button>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  getSearchBar = () => {
+    const {filteredSearchList, search} = this.state
+    const showSearchList =
+      filteredSearchList.length === 0 ? '' : this.showSearchList()
+    return (
+      <div className="search-div">
+        <div className="search-di">
+          <BsSearch className="search-icon" />
+          <input
+            type="search"
+            placeholder="Enter the State"
+            className="search-input"
+            onChange={this.getSearchResult}
+          />
+        </div>
+        {search.length > 0 ? showSearchList : ''}
+      </div>
+    )
+  }
+
+  getTotalNational = () => {
+    const {
+      totalActiveCases,
+      totalConfirmedCases,
+      totalDeceasedCases,
+      totalRecoveredCases,
+    } = this.state
+    return (
+      <div className="stats-container">
+      <div className="confirmed card">
+        <p className="stats-type confirmed-cases">Confirmed</p>
+        <img
+          className='image'
+          src="https://res.cloudinary.com/dvmp5vgbm/image/upload/v1654438432/Covid19%20Dashboard/check-mark_1_odg0vn.png"
+          alt="country wide confirmed cases pic"
+        />
+        <p className="confirmed-cases cases">{totalConfirmedCases}</p>
+      </div>
+      <div className="active card">
+        <p className="stats-type active-cases">
+          Active
+        </p>
+        <img
+          className='image'
+          src="https://res.cloudinary.com/dvmp5vgbm/image/upload/v1654438417/Covid19%20Dashboard/protection_1_zjqmhw.png"
+          alt="country wide active cases pic"
+        />
+        <p className="active-cases cases">{totalActiveCases}</p>
+      </div>
+      <div className="recovered card">
+        <p
+          className="stats-type recovered-cases"
+        >
+          Recovered
+        </p>
+        <img
+          className='image'
+          src="https://res.cloudinary.com/dvmp5vgbm/image/upload/v1654438418/Covid19%20Dashboard/recovered_1_qmgv0f.png"
+          alt="country wide recovered cases pic"
+        />
+        <p className="recovered-cases cases">{totalRecoveredCases}</p>
+      </div>
+      <div className="deceased card">
+        <p
+          className="stats-type deceased-cases"
+        >
+          Deceased
+        </p>
+        <img
+          className='image'
+          src="https://res.cloudinary.com/dvmp5vgbm/image/upload/v1654438420/Covid19%20Dashboard/breathing_1_ctu4mw.png"
+          alt="country wide deceased cases pic"
+        />
+        <p className="deceased-cases cases">{totalDeceasedCases}</p>
+      </div>
+    </div>
+    )
+  }
+
+  decClick = () => {
+    const {statesInfo} = this.state
+    const sortedList = statesInfo.sort((a, b) => {
+      const x = a.stateName.toUpperCase()
+      const y = b.stateName.toUpperCase()
+      return x > y ? 1 : -1
+    })
+    this.setState({statesInfo: sortedList})
+  }
+
+  incClick = () => {
+    const {statesInfo} = this.state
+    const sortedList = statesInfo.sort((a, b) => {
+      const x = a.stateName.toUpperCase()
+      const y = b.stateName.toUpperCase()
+      return x < y ? 1 : -1
+    })
+    this.setState({statesInfo: sortedList})
+  }
+
+  getTotalStateWise = () => {
+    const {statesInfo} = this.state
+    return (
+      <div className="din">
+        <div className="states-table">
+          <div className="table-div">
+            <div className="table-names">
+            <button
+                className="order-btn"
+                type="button"
+                onClick={this.decClick}
+              >
+                <FcGenericSortingAsc className="order-icon" />
+              </button>
+              <p className='ut'>States/UT</p>
+              <button
+                className="order-btn"
+                type="button"
+                onClick={this.incClick}
+              >
+                <FcGenericSortingDesc className="order-icon" />
+              </button>
+            </div>
+            <div className="table-para">
+              <p>Confirmed</p>
+            </div>
+            <div className="table-para">
+              <p>Active</p>
+            </div>
+            <div className="table-para">
+              <p>Recovered</p>
+            </div>
+            <div className="table-para">
+              <p>Deceased</p>
+            </div>
+            <div className="table-para">
+              <p>Population</p>
+            </div>
+          </div>
+          <hr />
+          <ul className="state">
+            {statesInfo.map(each => (
+              <TotalStateDetails key={each.stateCode} details={each} />
+            ))}
+          </ul>
+        </div>
+      </div>
+    )
+  }
+  renderHomeDetails = () =>{
+    return(
+      <>
+       {this.getSearchBar()}
+       {this.getTotalNational()}
+       { this.getTotalStateWise()}
+       <Footer/>
+      </>
+    )
+    
   }
   render() {
+    const {isLoading, statesInfo} = this.state
+    console.log(isLoading)
+    console.log(statesInfo)
     return (
-     <>
-      <Header/>
-      <main className='home-container'>
-          {this.renderHome()}
-      </main>
-     </>
+      <>
+        <Header/>
+        <div className='home-container'>
+           {isLoading ? <Loading/> : this.renderHomeDetails()}
+        </div>
+      </>
     )
   }
 }
-
 export default Home

@@ -1,69 +1,105 @@
-nav{
-    background:#1e1e30;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding:16px 100px;
-    color: #fff;
-}
-nav h1{
-    font-family:'Bree Serif';
-    color: #fff;
-    font-size: 22px;
-    font-weight: 600;
-}
-.india{
-    color: blue;
-    font-family:'Bree Serif';
-}
-nav ul{
-    display: flex;
-    align-items: center;
-}
-nav ul li {
-    margin: 5px 25px;
-    font-size: 16px;
-    font-weight: 600;
-}
-.menu-icon{
-   width: 30px;
-   height: 30px;
-   display: none;
-}
-.menu-icon-cancel{
-    display: none;
-    list-style: none;
+.header-container {
+  background-color: #1e1e30;
+  width: 100%;
+  position: fixed;
+  padding: 20px 60px;
+  height: 60px;
 }
 
-@media (max-width:768px){
-    nav{
-        padding: 10px 20px;
-        height: 80px;
-    }
-    .menu-icon{
-        display: block;
-    }
-    .menu-icon-cancel{
-        display: block;
-    }
-    .nav-link{
-        color: red;
-    }
-    nav ul{
-        position: fixed;
-        top:0;
-        left:0;
-        right: 0;
-        background: blue;
-        padding-top: 90px;
-        z-index: -1;
-    }
-    .hide{
-        display: none;
-    }
-    .nav-link{
-        color: #94a3b8;
-    }
+.nav-bar-sm-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (min-width: 760px) {
+  .nav-bar-sm-container {
+    display: none;
+  }
+}
+
+.navigation-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.nav-bar-icon {
+  height: 24px;
+  width: 24px;
+}
+.close-nav-btn {
+  color: #ffffff;
+  background-color: transparent;
+  height: 16px;
+  width: 16px;
+  border: none;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+.nav-sm-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sm-controls {
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+  padding-top: 25px;
+}
+
+.nav-item-link {
+  text-decoration: none;
+}
+.nav-bar-large-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1e1e30;
+}
+@media screen and (max-width: 760px) {
+  .nav-bar-large-container {
+    display: none;
+  }
+}
+.logo-heading {
+  width: 130px;
+  height: 24px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: #f8fafc;
+  cursor: pointer;
+}
+
+.india {
+  color: #007bff;
+}
+.nav-controls {
+  display: flex;
+}
+
+.nav-item {
+  list-style-type: none;
+  margin-right: 20px;
+  cursor: pointer;
+  height: 24px;
+  color: #94a3b8;
+}
+
+.nav-item-home {
+  list-style-type: none;
+  margin-right: 15px;
+  cursor: pointer;
+  height: 24px;
+  color: #94a3b8;
+}
+
+.active-tab-class {
+  list-style-type: none;
+  margin-right: 15px;
+  color: #f8fafc;
+  cursor: pointer;
+  height: 24px;
 }

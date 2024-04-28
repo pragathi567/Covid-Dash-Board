@@ -1,0 +1,70 @@
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #161625;
+    padding: 50px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .footer-icons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .footer-icons-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 30%;
+    }
+  }
+  
+  .footer-heading {
+    color: #ffffff;
+    font-family: 'Bree Serif';
+    line-height: 32px;
+    text-align: center;
+    font-family:'Bree Serif';
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .footer-heading-india {
+    color: #007bff;
+    font-family:'Bree Serif';
+  }
+  
+  .footer-description {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 24px;
+    text-align: center;
+    color: #94a3b8;
+    margin: 15px auto;
+  }
+  
+
+  
+  .footer-icon {
+    color: #cbd5e1;
+    height: 22px;
+    width: 22px;
+    text-align: center;
+  }
+  
+  @media screen and (min-width: 768px) {
+    .footer-icon {
+      color: #cbd5e1;
+      font-size: 52.92px;
+      line-height: 60.86px;
+      width: 42px;
+      height: 46.11px;
+      text-align: center;
+    }
+  }
