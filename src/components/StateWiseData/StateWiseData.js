@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react'
+import React, { Component } from 'react'
 import './StateWiseData.css'
 import AllCharts from '../AllCharts/AllCharts'
 import Header from '../Header/Header'
@@ -305,9 +305,9 @@ export default class StateWiseData extends Component {
       </div>
     )
   }
-}*/
+}
 
-import React from 'react'
+/*import React from 'react'
 
 const StateWiseData = () => {
   return (
@@ -315,4 +315,4 @@ const StateWiseData = () => {
   )
 }
 
-export default StateWiseData
+export default StateWiseData*/
