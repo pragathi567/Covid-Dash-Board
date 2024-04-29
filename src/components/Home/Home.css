@@ -11,7 +11,14 @@
   min-width: 100%;
   padding-top: 120px;
 }
-
+.square{
+  margin-left: 5px;
+}
+.search-btn{
+  padding: 0 4px ;
+  display: flex;
+  align-items: center;
+}
 .search-div {
   width: 600px;
   min-height: 12vh;

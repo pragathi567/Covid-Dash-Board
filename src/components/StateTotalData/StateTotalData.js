@@ -1,27 +1,21 @@
-import {Component} from 'react'
+import React, { Component } from 'react'
 import './StateTotalData.css'
-class StateTotalData extends Component {
+ class StateTotalData extends Component {
   state = {
-    confirmedData: {},
-    activeData: {},
-    recoveredData: {},
-    deceasedData: {},
+    confirmedData : {},
+    activeData : {},
+    recoveredData : {},
+    deceasedData : {}
   }
-
-  componentDidMount() {
+  componentDidMount(){
     this.getEachState()
   }
-
   getEachState = async () => {
     const {eachStateTotalData} = this.props
-
     const totalConfirmed = eachStateTotalData.confirmed
     const totalRecovered = eachStateTotalData.recovered
-
     const totalDeceased = eachStateTotalData.deceased
-
     const totalActive = totalConfirmed - totalRecovered - totalDeceased
-
     const confirmedData = {
       name: 'Confirmed',
       logo:
@@ -48,25 +42,21 @@ class StateTotalData extends Component {
         'https://res.cloudinary.com/dqgbmdtmt/image/upload/v1686903441/breathing_1_uhaowc.svg',
       value: totalDeceased,
     }
-
     this.setState({
       confirmedData,
       activeData,
       recoveredData,
-      deceasedData,
+      deceasedData
     })
   }
-
   onGetTotal = value => {
     const {onGetCategory} = this.props
     onGetCategory(value)
   }
-
   render() {
     const {confirmedData, activeData, recoveredData, deceasedData} = this.state
     const {active} = this.props
     const itsactiveonload = active ? 'confirmed-block' : ''
-
     return (
       <ul className="state-result-ul ">
         <li
@@ -133,4 +123,5 @@ class StateTotalData extends Component {
     )
   }
 }
+
 export default StateTotalData

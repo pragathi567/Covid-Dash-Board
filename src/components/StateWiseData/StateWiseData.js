@@ -1,12 +1,12 @@
-import {Component} from 'react'
-import {Loading} from '../Loading/Loading'
+/*import React, { Component } from 'react'
+import './StateWiseData.css'
+import AllCharts from '../AllCharts/AllCharts'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import DistrictWiseData from '../DistrictWiseData/DistrictWiseData'
 import StateTotalData from '../StateTotalData/StateTotalData'
-import AllCharts from '../AllCharts/AllCharts'
-import './StateWiseData.css'
-
+import { Loading } from '../Loading/Loading'
+import { useParams } from 'react-router-dom'
 const statesList = [
   {
     state_code: 'AN',
@@ -154,7 +154,8 @@ const statesList = [
   },
 ]
 
-class StateWiseCases extends Component {
+
+export default class StateWiseData extends Component {
   state = {
     eachStateTotalData: [],
     isLoading: true,
@@ -167,15 +168,11 @@ class StateWiseCases extends Component {
     date: '',
     stateCode: '',
   }
-
-  componentDidMount() {
+  componentDidMount(){
     this.getAllStateData()
   }
-
   getAllStateData = async () => {
-    const {match} = this.props
-    const {params} = match
-    const {stateCode} = params
+    const {stateCode} = useParams();
     const apiUrl = `https://apis.ccbp.in/covid19-state-wise-data/`
     const options = {
       method: 'GET',
@@ -207,12 +204,9 @@ class StateWiseCases extends Component {
       console.log('Fetch Error')
     }
   }
-
   onGetCategory = categoryVal => {
     this.setState({category: categoryVal, activeTab: false})
   }
-
-
   getCategoryWiseData = () => {
     const {category, id, dataArray} = this.state
     const districtOutput = dataArray[id].districts
@@ -246,7 +240,6 @@ class StateWiseCases extends Component {
     }
     return categoryData
   }
-
   renderStateView = () => {
     const {
       nameOfState,
@@ -302,7 +295,7 @@ class StateWiseCases extends Component {
   render() {
     const {isLoading} = this.state
     const renderData = isLoading
-      ? <Loading/>
+      ?<Loading/>
       : this.renderStateView()
     return (
       <div className="state-bg-container">
@@ -312,6 +305,14 @@ class StateWiseCases extends Component {
       </div>
     )
   }
+}*/
+
+import React from 'react'
+
+const StateWiseData = () => {
+  return (
+    <div>StateWiseData</div>
+  )
 }
 
-export default StateWiseCases
+export default StateWiseData

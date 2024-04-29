@@ -254,7 +254,7 @@ class Home extends Component {
             <Link className="link-home" to={`/state/${each.state_code}`}>
               <button type="button" className="search-btn">
                 <p>{each.state_code}</p>
-                <BiChevronRightSquare />
+                <BiChevronRightSquare className='square' />
               </button>
             </Link>
           </li>
