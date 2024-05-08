@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import './StateWiseData.css'
-import AllCharts from '../AllCharts/AllCharts'
+import {Component} from 'react'
+import { Loading } from '../Loading/Loading'
 import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
 import DistrictWiseData from '../DistrictWiseData/DistrictWiseData'
 import StateTotalData from '../StateTotalData/StateTotalData'
-import { Loading } from '../Loading/Loading'
-import { useParams } from 'react-router-dom'
+import AllCharts from '../AllCharts/AllCharts'
+import './StateWiseData.css'
+
+
 const statesList = [
   {
     state_code: 'AN',
@@ -154,8 +154,7 @@ const statesList = [
   },
 ]
 
-
-export default class StateWiseData extends Component {
+class StateWiseData extends Component {
   state = {
     eachStateTotalData: [],
     isLoading: true,
@@ -168,11 +167,13 @@ export default class StateWiseData extends Component {
     date: '',
     stateCode: '',
   }
-  componentDidMount(){
+
+  componentDidMount() {
     this.getAllStateData()
   }
+
   getAllStateData = async () => {
-    const {stateCode} = useParams();
+    const stateCode = window.location.href.split('/')[4]
     const apiUrl = `https://apis.ccbp.in/covid19-state-wise-data/`
     const options = {
       method: 'GET',
@@ -204,9 +205,13 @@ export default class StateWiseData extends Component {
       console.log('Fetch Error')
     }
   }
+
   onGetCategory = categoryVal => {
     this.setState({category: categoryVal, activeTab: false})
   }
+
+  
+
   getCategoryWiseData = () => {
     const {category, id, dataArray} = this.state
     const districtOutput = dataArray[id].districts
@@ -240,6 +245,7 @@ export default class StateWiseData extends Component {
     }
     return categoryData
   }
+
   renderStateView = () => {
     const {
       nameOfState,
@@ -253,7 +259,7 @@ export default class StateWiseData extends Component {
     const catdata = this.getCategoryWiseData()
 
     return (
-      <div className="">
+      <div className='state-details'>
         <div className="state-heading-card">
           <h1 className="name-of-state">{nameOfState}</h1>
           <div className="state-test-no-container">
@@ -272,8 +278,8 @@ export default class StateWiseData extends Component {
           />
         </div>
         <div className="total-district-card">
-          <h1 className={`district-heading ${category}-color`}>
-            Top Districts
+          <h1 className="district-heading">
+            Top Districts -<span>{category}cases</span>
           </h1>
           <ul className="district-card-container">
             {catdata.map(each => (
@@ -294,25 +300,16 @@ export default class StateWiseData extends Component {
 
   render() {
     const {isLoading} = this.state
-    const renderData = isLoading
-      ?<Loading/>
-      : this.renderStateView()
     return (
       <div className="state-bg-container">
         <Header />
-        <div className="state-card">{renderData}</div>
-        <Footer />
+        <div className="state-card">
+          {isLoading &&<Loading/>}
+          {!isLoading && this.renderStateView()}
+        </div>
       </div>
     )
   }
 }
 
-/*import React from 'react'
-
-const StateWiseData = () => {
-  return (
-    <div>StateWiseData</div>
-  )
-}
-
-export default StateWiseData*/
+export default StateWiseData

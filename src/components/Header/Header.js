@@ -6,8 +6,7 @@ class Header extends Component {
   state = {
     displaySmNavItems: false,
     activeHomeNav: true,
-    activeAboutNav: false,
-    activeVaccinationNav: false,
+    activeAboutNav: false
   }
 
   onClickNavBarIcon = () => {
@@ -25,8 +24,7 @@ class Header extends Component {
   activeHomeNav = () => {
     this.setState({
       activeHomeNav: true,
-      activeAboutNav: false,
-      activeVaccinationNav: false,
+      activeAboutNav: false
     })
   }
 
@@ -50,13 +48,10 @@ class Header extends Component {
     const {
       displaySmNavItems,
       activeHomeNav,
-      activeAboutNav,
-      activeVaccinationNav,
+      activeAboutNav
     } = this.state
     const activeHomeClass = activeHomeNav === true ? 'active-tab-class' : ''
     const activeAboutClass = activeAboutNav === true ? 'active-tab-class' : ''
-    const activeVaccinationClass =
-      activeVaccinationNav === true ? 'active-tab-class' : ''
 
     return (
       <div className="header-container">
@@ -98,15 +93,7 @@ class Header extends Component {
                   About
                 </li>
               </Link>
-              <Link to="/vaccination" className="nav-item-link">
-                <li
-                  onClick={this.activeVaccinationNav}
-                  className={`nav-item ${activeVaccinationClass}`}
-                >
-                  Vaccination
-                </li>
-              </Link>
-            </ul>
+            </ul> 
             <button
               data-testid="close-nav-btn"
               className="close-nav-btn"
@@ -143,15 +130,6 @@ class Header extends Component {
                 onClick={this.activeAboutNav}
               >
                 About
-              </li>
-            </Link>
-
-            <Link to="/vaccination" className="nav-item-link">
-              <li
-                className={`nav-item ${activeVaccinationClass}`}
-                onClick={this.activeVaccinationNav}
-              >
-                Vaccination
               </li>
             </Link>
           </ul>
