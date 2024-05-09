@@ -4,7 +4,9 @@ import Footer from '../Footer/Footer'
 import './About.css'
 
 class About extends Component {
-  state = {faqList: []}
+  state = {
+    faqList: [],
+  }
 
   componentDidMount() {
     this.getTotalFaq()

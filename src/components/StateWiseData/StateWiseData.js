@@ -1,11 +1,11 @@
 import {Component} from 'react'
-import { Loading } from '../Loading/Loading'
 import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 import DistrictWiseData from '../DistrictWiseData/DistrictWiseData'
 import StateTotalData from '../StateTotalData/StateTotalData'
+import {Loading} from '../Loading/Loading'
 import AllCharts from '../AllCharts/AllCharts'
 import './StateWiseData.css'
-
 
 const statesList = [
   {
@@ -154,7 +154,7 @@ const statesList = [
   },
 ]
 
-class StateWiseData extends Component {
+class StateWiseCases extends Component {
   state = {
     eachStateTotalData: [],
     isLoading: true,
@@ -210,8 +210,6 @@ class StateWiseData extends Component {
     this.setState({category: categoryVal, activeTab: false})
   }
 
-  
-
   getCategoryWiseData = () => {
     const {category, id, dataArray} = this.state
     const districtOutput = dataArray[id].districts
@@ -259,7 +257,8 @@ class StateWiseData extends Component {
     const catdata = this.getCategoryWiseData()
 
     return (
-      <div className='state-details'>
+      <>
+       <div className="state-data">
         <div className="state-heading-card">
           <h1 className="name-of-state">{nameOfState}</h1>
           <div className="state-test-no-container">
@@ -278,8 +277,8 @@ class StateWiseData extends Component {
           />
         </div>
         <div className="total-district-card">
-          <h1 className="district-heading">
-            Top Districts -<span>{category}cases</span>
+          <h1 className={`district-heading ${category}-color`}>
+            Top Districts - <span>{category}cases</span>
           </h1>
           <ul className="district-card-container">
             {catdata.map(each => (
@@ -294,22 +293,24 @@ class StateWiseData extends Component {
             <AllCharts stateCode={stateCode} category={category} />
           </div>
         </div>
+        <Footer/>
       </div>
+      </>
     )
   }
 
   render() {
     const {isLoading} = this.state
     return (
-      <div className="state-bg-container">
-        <Header />
-        <div className="state-card">
-          {isLoading &&<Loading/>}
-          {!isLoading && this.renderStateView()}
+      <>
+      <Header/>
+        <div className="state-bg-container">
+          {isLoading?<Loading/>:this.renderStateView()}
+        
         </div>
-      </div>
+      </>
     )
   }
 }
 
-export default StateWiseData
+export default StateWiseCases
